@@ -1,13 +1,6 @@
-require 'active_support/all'
-require 'pry'
+class Library::Manager
 
-require_relative 'author.rb'
-require_relative 'book.rb'
-require_relative 'published_book.rb'
-require_relative 'reader.rb'
-require_relative 'reader_with_book.rb'
-
-class Manager
+  include Library::Commentable  
 
   attr_accessor :readers, :books, :readers_with_books 
   attr_reader :statistics
@@ -21,19 +14,19 @@ class Manager
   end
 
   def new_book author, title, price, pages_quantity, published_at
-    new_book = PublishedBook.new author, title, price, pages_quantity, published_at
+    new_book = Library::PublishedBook.new author, title, price, pages_quantity, published_at
     books.push new_book
     populate_statistics!
   end
 
   def new_reader  name, reading_speed
-    new_reader = Reader.new name, reading_speed
+    new_reader = Library::Reader.new name, reading_speed
     readers.push new_reader
     populate_statistics!
   end
 
   def new_reader_with_book reader, published_book
-    new_reader_with_book = ReaderWithBook.new(published_book, reader)
+    new_reader_with_book = Library::ReaderWithBook.new(published_book, reader)
     readers_with_books.push new_reader_with_book
     populate_statistics!
   end
@@ -53,13 +46,13 @@ class Manager
   def give_book_to_reader reader_name, book_title
     reader = get_reader_by_name reader_name
     book = get_book_by_title book_title
-    reader_with_book = ReaderWithBook.new(books.delete(book), readers.delete(reader))
+    reader_with_book = Library::ReaderWithBook.new(books.delete(book), readers.delete(reader))
     readers_with_books.push reader_with_book
     populate_statistics!
   end
 
   def read_the_book reader_name, duration
-    ReaderWithBook.find_reader_and_update_current_page @readers_with_books, reader_name, duration
+    Library::ReaderWithBook.find_reader_and_update_current_page @readers_with_books, reader_name, duration
     populate_statistics!
   end
 

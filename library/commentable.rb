@@ -15,7 +15,7 @@ module Library
         self.class_variable_get :@@comments_counter
       end
 
-      def inc_comment_or_init increment
+      def inc_comment increment
         self.class_variable_set :@@comments_counter, self.class_variable_get(:@@comments_counter) + increment
       end
 
@@ -33,7 +33,7 @@ module Library
     end
 
     def add_comment comment = ""
-      self.class.inc_comment_or_init 1
+      self.class.inc_comment 1
       @@total_comments_counter += 1
       @comments << comment
     end

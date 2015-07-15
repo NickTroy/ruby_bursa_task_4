@@ -24,27 +24,24 @@ describe Library::Author do
 
 end
 
-
-=begin
-describe Manager do
-  let!(:stendhal) { Author.new(1783, 1842, 'Stendhal' ) }
-  let!(:nietzsche ) { Author.new(1844, 1900, 'Friedrich Nietzsche' ) }
-  let!(:leo_tolstoy) { Author.new(1828, 1910, 'Leo Tolstoy' ) }
-  let!(:some_author) { Author.new(1828, 1910, 'Some Author' ) }
-  let!(:some_reader) { Reader.new('Some Reader', 100) }
-  let!(:ivan_testenko_reader) { Reader.new('Ivan Testenko', 100) }
-  let!(:vasiliy_pupkin_reader) { Reader.new('Vasiliy Pupkin', 10) }
-  let!(:barak_obama_reader) { Reader.new('Barak Obama', 10) }
-  let!(:war_and_peace) { PublishedBook.new(leo_tolstoy, 'War and Peace', 1400, 3280, 1996) }
-  let!(:some_book) { PublishedBook.new(some_author, 'Some book', 1400, 3280, 1996) }
-  let!(:zarathustra) { PublishedBook.new(nietzsche, 'Thus Spoke Zarathustra', 1400, 204, 1990) }
-  let!(:red_and_black) { PublishedBook.new(stendhal, 'Red and Black', 1400, 3280, 1996) }
-
-  let!(:ivan_and_war_and_peace) { ReaderWithBook.new(war_and_peace, ivan_testenko_reader, 328, (Time.now + 2.days)) }
-  let!(:some_reader_with_book) { ReaderWithBook.new(some_book, some_reader, 328, (Time.now + 2.days)) }
-  let!(:vasiliy_and_red_and_black) { ReaderWithBook.new(red_and_black, vasiliy_pupkin_reader) }
-  let!(:barak_and_zarathustra) { ReaderWithBook.new(zarathustra, barak_obama_reader) }
-  let!(:manager) { Manager.new([some_reader], [some_book], [ivan_and_war_and_peace]) }
+describe Library::Manager do
+  let!(:stendhal) { Library::Author.new(1783, 1842, 'Stendhal' ) }
+  let!(:nietzsche ) { Library::Author.new(1844, 1900, 'Friedrich Nietzsche' ) }
+  let!(:leo_tolstoy) { Library::Author.new(1828, 1910, 'Leo Tolstoy' ) }
+  let!(:some_author) { Library::Author.new(1828, 1910, 'Some Author' ) }
+  let!(:some_reader) { Library::Reader.new('Some Reader', 100) }
+  let!(:ivan_testenko_reader) { Library::Reader.new('Ivan Testenko', 100) }
+  let!(:vasiliy_pupkin_reader) { Library::Reader.new('Vasiliy Pupkin', 10) }
+  let!(:barak_obama_reader) { Library::Reader.new('Barak Obama', 10) }
+  let!(:war_and_peace) { Library::PublishedBook.new(leo_tolstoy, 'War and Peace', 1400, 3280, 1996) }
+  let!(:some_book) { Library::PublishedBook.new(some_author, 'Some book', 1400, 3280, 1996) }
+  let!(:zarathustra) { Library::PublishedBook.new(nietzsche, 'Thus Spoke Zarathustra', 1400, 204, 1990) }
+  let!(:red_and_black) { Library::PublishedBook.new(stendhal, 'Red and Black', 1400, 3280, 1996) }
+  let!(:ivan_and_war_and_peace) { Library::ReaderWithBook.new(war_and_peace, ivan_testenko_reader, 328, (Time.now + 2.days)) }
+  let!(:some_reader_with_book) { Library::ReaderWithBook.new(some_book, some_reader, 328, (Time.now + 2.days)) }
+  let!(:vasiliy_and_red_and_black) { Library::ReaderWithBook.new(red_and_black, vasiliy_pupkin_reader) }
+  let!(:barak_and_zarathustra) { Library::ReaderWithBook.new(zarathustra, barak_obama_reader) }
+  let!(:manager) { Library::Manager.new([some_reader], [some_book], [ivan_and_war_and_peace]) }
 
   it 'should create a new book' do
     manager.new_book(some_author, 'Some book', 1400, 3280, 1996)
@@ -118,4 +115,4 @@ TEXT
   end
   
 end
-=end
+
