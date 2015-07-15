@@ -22,17 +22,17 @@ module Library::Identifier
       super *args
     end
 
-    def identifier
-      @identifier
-    end
+  end
 
-    def eql?(obj)
-      obj.identifier.eql? @identifier
-    end
+  def identifier
+    @identifier
+  end
 
-    def ==(obj)
-      obj.identifier.eql? @identifier
-    end
+  def eql?(obj)
+    obj.identifier.eql? @identifier
+  end
 
+  def ==(obj)
+    obj.identifier == @identifier
   end
 end
